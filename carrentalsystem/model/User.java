@@ -9,6 +9,7 @@ public abstract class User {
     private String email;
     private String phoneNumber;
     private String password;
+    public Object getPassword;
 
     //type 0==> Client
     //type 1==> Admin
@@ -27,7 +28,7 @@ public abstract class User {
 
     }
 
-    public String getFirstNmae(){
+    public String getFirstName(){
         return firstName;
     }
     public void setFirstName(String firstName){
@@ -47,7 +48,7 @@ public abstract class User {
     
     }
 
-    public void setEmail(){
+    public void setEmail(String email){
         this.email=email;
 
 
