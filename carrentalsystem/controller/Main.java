@@ -1,5 +1,7 @@
 package carrentalsystem.controller;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,13 +10,13 @@ import carrentalsystem.model.Client;
 import carrentalsystem.model.Database;
 import carrentalsystem.model.User;
 
-public class Login {
+public class Main {
     public static void main(String[] args) {
         Database database = new Database();
         Scanner s = new Scanner(System.in);
-    }
 
-    public Login(Database database, Scanner s){
+
+
         System.out.println("Welcome to the Car Rental System!");
         System.out.println("Enter your email:\n -1 to create a new account");
         String email = s.next();
@@ -64,7 +66,7 @@ public class Login {
         }
         
         for (User u : users) {
-            if (u.getEmail().equals(email) && u.getPassword.equals(password)) {
+            if (u.getEmail().equals(email) && u.getPassword().equals(password)) {
                 System.out.println("Welcome " + u.getFirstName() + "!");
                 u.showList(database, s);
 
@@ -72,5 +74,6 @@ public class Login {
         }
 
     }
+
     
 }

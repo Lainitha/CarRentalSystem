@@ -3,6 +3,10 @@ package carrentalsystem.controller;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
 
 import java.util.Scanner;
 
@@ -42,10 +46,12 @@ public class AddNewAccount implements operation {
         }
         
         try {
-            Connection connection = DriverManager.getConnection(database.getUrl(), database.getUser(), database.getPassword());
-            Statement statement = connection.createStatement();
+            ResultSet rs = database.getStatement().executeQuery("SELECT COUNT(*);"); 
+            rs.next();
+            int id = rs.getInt("Count(*)")-1;
+            
             String insert = "INSERT INTO `users` (`firstName`, `lastName`, `email`, `phoneNumber`, `password`, `type`) VALUES ('" + firstName + "', '" + lastName + "', '" + email + "', '" + phoneNumber + "', '" + password + "', " + accType + ");";
-            statement.executeUpdate(insert);
+            database.getStatement().executeUpdate(insert);
             System.out.println("New account created successfully.");
             
         } catch (SQLException e) {

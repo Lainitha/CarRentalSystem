@@ -7,6 +7,7 @@ import carrentalsystem.controller.AddNewAccount;
 public class Admin extends User{
 
     private operation[] operations = new operation[] { new AddNewAccount(1)};
+    private Scanner s;
 
     public Admin(){
         super();
@@ -22,6 +23,12 @@ public class Admin extends User{
         System.out.println("6. Show Rents");
         System.out.println("7.Quit\n");
 
-    }
+    
+
+        int i = s.nextInt();
+        operations[0].operation(database, s, this);
     
 }
+}
+
+
