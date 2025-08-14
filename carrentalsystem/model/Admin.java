@@ -1,7 +1,7 @@
 package carrentalsystem.model;
+import carrentalsystem.controller.AddNewAccount;
 import java.util.Scanner;
 
-import carrentalsystem.controller.AddNewAccount;
 
 
 public class Admin extends User{
@@ -27,6 +27,7 @@ public class Admin extends User{
 
         int i = s.nextInt();
         operations[0].operation(database, s, this);
+        showList(database, s);
     
 }
 }
