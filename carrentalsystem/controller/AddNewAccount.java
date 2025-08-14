@@ -1,18 +1,13 @@
 package carrentalsystem.controller;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-
-
-import java.util.Scanner;
-
-import carrentalsystem.model.operation;
+import carrentalsystem.model.Client;
 import carrentalsystem.model.Database;
 import carrentalsystem.model.User;
+import carrentalsystem.model.operation;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class AddNewAccount implements operation {
@@ -46,18 +41,47 @@ public class AddNewAccount implements operation {
         }
         
         try {
-            ResultSet rs = database.getStatement().executeQuery("SELECT COUNT(*);"); 
+            ArrayList<String> existingEmails = new ArrayList<>();
+            ResultSet rs0 = database.getStatement().executeQuery("SELECT `email` FROM `users`;");
+            while (rs0.next()){
+                existingEmails.add(rs0.getString("email"));
+            }
+
+            if (existingEmails.contains(email)){
+                System.out.println("Email already exists. Please try again.");
+                return;
+            }
+            ResultSet rs = database.getStatement().executeQuery("SELECT COUNT(*) FROM `users`;"); 
             rs.next();
-            int id = rs.getInt("Count(*)")-1;
+            int id = rs.getInt("Count(*)");
             
-            String insert = "INSERT INTO `users` (`firstName`, `lastName`, `email`, `phoneNumber`, `password`, `type`) VALUES ('" + firstName + "', '" + lastName + "', '" + email + "', '" + phoneNumber + "', '" + password + "', " + accType + ");";
+            String insert = "INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `phoneNumber`, `password`, `type`) VALUES (" + id + ", '" + firstName + "', '" + lastName + "', '" + email + "', '" + phoneNumber + "', '" + password + "', " + accType + ");";
             database.getStatement().executeUpdate(insert);
             System.out.println("New account created successfully.");
+
+            if (accType ==0){
+                user = new Client();
+
+                user.setId(id);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setEmail(email);
+                user.setPhoneNumber(phoneNumber);
+                user.setPassword(password);
+                user.showList(database,s);
+
+
+            }
+
             
-        } catch (SQLException e) {
+            
+            
+        }catch (SQLException e) {
             e.printStackTrace();
         }
 
+
+        
 
 
 
