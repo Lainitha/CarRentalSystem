@@ -51,9 +51,9 @@ public class Main {
                     user.setPhoneNumber(phoneNumber);
                     user.setPassword(pass);
                     users.add(user);
-                    user.showList(database, s);
+                    //user.showList(database,s);
                 }
-
+                    
                 else if (type==1) {
                     user = new Admin();
                     user.setId(id);
@@ -63,7 +63,8 @@ public class Main {
                     user.setPhoneNumber(phoneNumber);
                     user.setPassword(pass);
                     users.add(user);
-                }
+                    //user.showList(database, s);
+                } 
                 
 
             }
@@ -79,16 +80,15 @@ public class Main {
                 System.out.println("Welcome " + u.getFirstName() + "!");
                 loggedIn =true;
                 u.showList(database, s);
+                }        
 
             }
-        }
         if (!loggedIn){
 
             System.out.println("Email or password is incorrect.");
             s.close();
         }
 
-    }
+    }}
 
-    
-}
+
