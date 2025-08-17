@@ -14,6 +14,7 @@ public class Car {
     //1==> rented
     //2 ==> Deleted
 
+    
     public Car() {
 
     }
@@ -31,9 +32,8 @@ public class Car {
         return brand;
     }
 
-    public void getBrand(String brand) {
-        this.brand =brand;
-
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public String getModel() {
@@ -75,8 +75,6 @@ public class Car {
     public void setAvailable(int available){
         this.available=available;
     }   
-
-
 
     
 } 

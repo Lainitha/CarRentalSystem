@@ -20,7 +20,7 @@ public class Main {
         System.out.println("Enter your email:\n -1 to create a new account");
         String email = s.next();
         if (email.equals("-1")) {
-            new AddNewAccount(0).operation(database, s,null);
+            new AddNewAccount(1).operation(database, s,null);
             return;
         }
         System.out.println("Enter password:");
