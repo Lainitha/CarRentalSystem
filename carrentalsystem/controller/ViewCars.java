@@ -22,7 +22,7 @@ public class ViewCars implements operation {
             while (rs.next()) {
                 Car car = new Car();
                 car.setID(rs.getInt("id"));
-                car.setBrand(rs.getString("brand"));   // ✅ fixed
+                car.setBrand(rs.getString("brand"));   
                 car.setModel(rs.getString("model"));
                 car.setColor(rs.getString("color"));
                 car.setYear(rs.getInt("year"));
