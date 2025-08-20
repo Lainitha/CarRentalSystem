@@ -1,6 +1,7 @@
 package carrentalsystem.model;
 import carrentalsystem.controller.AddNewAccount;
 import carrentalsystem.controller.AddNewCar;
+import carrentalsystem.controller.UpdateCar;
 import carrentalsystem.controller.ViewCars;
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ import java.util.Scanner;
 
 public class Admin extends User{
 
-    private operation[] operations = new operation[] {new AddNewCar(), new ViewCars() , new AddNewAccount(1)};
+    private operation[] operations = new operation[] {new AddNewCar(), new ViewCars() , new AddNewAccount(1), new UpdateCar()};
     private Scanner s;
 
     public Admin(){

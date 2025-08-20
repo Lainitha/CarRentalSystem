@@ -5,6 +5,9 @@ import carrentalsystem.model.User;
 import carrentalsystem.model.operation;
 import java.util.Scanner;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import carrentalsystem.model.Car;
+
 
 
 
@@ -31,11 +34,14 @@ public class UpdateCar implements operation {
             car.setBrand(rs1.getString("brand"));
             car.setModel(rs1.getString("model"));
             car.setColor(rs1.getString("color"));
-            car.setYear(rs1.getString("year"));
+            car.setYear(rs1.getInt("year"));
             car.setPrice(rs1.getDouble("price"));
             car.setAvailable(rs1.getInt("available"));
 
-
+            if (car.isAvailable()>1){
+                System.out.println("Car doesnt exist");
+                return;
+            }
             System.out.println("Enter Brand:(-1:" +car.getBrand()+")");
             String brand = s.next();
             if (brand.equals("-1")) brand =car.getBrand();
@@ -46,22 +52,27 @@ public class UpdateCar implements operation {
             String color = s.next();
             if (color.equals("-1")) color = car.getColor();
             
+            System.out.println("Enter Year: (-1:"+car.getYear()+")");
+            int year = s.nextInt();
+            if (year==-1) year = car.getYear();
+
+            System.out.println("Enter Price (double):(-1: "+car.getPrice()+")");
+            double price = s.nextDouble();
+            if  (price == -1) price = car.getPrice();
 
 
+            String update ="UPDATE `cars` SET `brand`='"+brand+"',`model`='"+model+"',`color`='"+color+"',`year`='"+year+"',`price`='"+price+"'  WHERE `id` ='"+id+"';";
+
+            database.getStatement().execute(update);
+            System.out.println("Car successfully updated");
         
             
-
-
-
-
             
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        String update ="UPDATE `cars` SET `brand`='[value-2]',`model`='[value-3]',`color`='[value-4]',`year`='[value-5]',`price`='[value-6]',`available`='[value-7]' WHERE `id` ='';";
-
-
+        
     }
     
 }
