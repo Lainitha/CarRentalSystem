@@ -20,7 +20,7 @@ public class Main {
         System.out.println("Enter your email:\n -1 to create a new account");
         String email = s.next();
         if (email.equals("-1")) {
-            new AddNewAccount(0).operation(database, s,null);
+            new AddNewAccount(1).operation(database, s,null);
             return;
         }
         System.out.println("Enter password:");
@@ -51,9 +51,9 @@ public class Main {
                     user.setPhoneNumber(phoneNumber);
                     user.setPassword(pass);
                     users.add(user);
-                    user.showList(database, s);
+                    //user.showList(database,s);
                 }
-
+                    
                 else if (type==1) {
                     user = new Admin();
                     user.setId(id);
@@ -63,7 +63,8 @@ public class Main {
                     user.setPhoneNumber(phoneNumber);
                     user.setPassword(pass);
                     users.add(user);
-                }
+                    //user.showList(database, s);
+                } 
                 
 
             }
@@ -79,16 +80,15 @@ public class Main {
                 System.out.println("Welcome " + u.getFirstName() + "!");
                 loggedIn =true;
                 u.showList(database, s);
+                }        
 
             }
-        }
         if (!loggedIn){
 
             System.out.println("Email or password is incorrect.");
             s.close();
         }
 
-    }
+    }}
 
-    
-}
+

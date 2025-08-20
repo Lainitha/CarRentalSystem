@@ -9,7 +9,7 @@ public abstract class User {
     private String email;
     private String phoneNumber;
     private String password;
-    public Object getPassword;
+
 
     //type 0==> Client
     //type 1==> Admin
@@ -24,7 +24,7 @@ public abstract class User {
         return id;
     }
     public void setId(int id){
-        this.id=id;
+
 
     }
 
